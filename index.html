@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>satissup</title>
+</head>
+<body>
+    <div id="pokemon-wrapper"></div>
+    
+    <script>
+
+        var wrapper = document.getElementById("pokemon-wrapper");
+
+        fetch("https://api.satisupp.com/pokedex")
+        .then(response => {
+            return response.json()
+            console.log(response)
+        })
+        .then((data => {
+            console.log(data)
+
+            data.data.forEach((pokemon) => {
+                console.log(pokemon)
+
+                var item = `
+                    <ul>
+                        <li>${pokemon.name.english} - ${pokemon.type}</li>
+                    </ul>
+                `;
+             wrapper.innerHTML += item;
+            })
+        }))
+    </script>
+</body>
+</html>
