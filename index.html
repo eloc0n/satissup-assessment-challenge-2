@@ -15,7 +15,11 @@
 
         fetch("https://api.satisupp.com/pokedex")
         .then(response => {
-            return response.json()
+            if (response.ok) {
+                return response.json()
+            } else {
+                return Promise.reject('something went wrong!')
+            }
             console.log(response)
         })
         .then((data => {
@@ -31,7 +35,7 @@
                 `;
              wrapper.innerHTML += item;
             })
-        }))
+        })).catch(error => console.log(error))
     </script>
 </body>
 </html>
